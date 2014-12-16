@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Geiser Games</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Abel|Sacramento">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/principal.css">
+</head>
+<body>
+  <div class="container" id="site">
+    <!-- Barra de navegação -->
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h1 class="page-brand"><a href="/">Geiser</a> <small> - seu computador a todo vapor</small></h1>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Inicial <span class="sr-only">(current)</span></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Fim da barra de navegação -->
+
+    <div class="row" id="conteudo">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <ul class="media-list">
+          {{#each players}}
+            <li class="media player-card">
+              <a class="media-left media-middle" href="/jogador/{{steamid}}/">
+                <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/ad/{{avatarmedium}}" class="avatar">
+              </a>
+              <div class="media-body">
+                <h3 class="media-heading"><a href="/jogador/{{steamid}}/">{{personaname}}</a></h3>
+                <dl class="dl-horizontal">
+                  <dt>Nome real:</dt><dd>{{realname}}</dd>
+                  <dt>País:</dt><dd>{{loccountrycode}}</dd>
+                  <dt>Perfil no steam:</dt><dd><a href="{{profileurl}}">@{{personaname}}</a></dd>
+                </dl>
+              </div>
+              <div class="player-card-link-container media-right media-bottom">
+                <a href="/jogador/{{steamid}}/" class="player-card-link">
+                  Veja detalhes
+                </a>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

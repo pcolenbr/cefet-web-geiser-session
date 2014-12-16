@@ -1,0 +1,21 @@
+{
+  "name": "Geiser",
+  "version": "0.0.0",
+  "description": "Um cadastrador de jogos",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/app"
+  },
+  "keywords": [
+    "crud",
+    "express"
+  ],
+  "author": "Flavio Coutinho",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.10.6",
+    "hbs": "^2.7.0",
+    "underscore": "^1.7.0"
+  }
+}
