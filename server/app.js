@@ -1,4 +1,5 @@
 var express = require('express'),
+	session = require('express-session'),
     fs = require('fs'),
     _ = require('underscore'),
     app = express();
@@ -8,17 +9,40 @@ var db = {
   jogosPorJogador: JSON.parse(fs.readFileSync(__dirname + '/data/jogosPorJogador.json'))
 };
 
+app.use(
+	session({secret: 'View Numbers'})
+);
+
 app.set('port', process.env.PORT || 3000);
 app.set('views', 'server/views');
 app.set('view engine', 'hbs');
 
+app.use(
+	express.static('client')
+);
+
+
+
 app.get('/', function(req, res) {
-  res.render('index', db.jogadores);
+
+	if (req.session.views) {
+		req.session.views++;
+	} else {
+		req.session.views = 1;
+	}
+  
+  res.render('index', { jogadores: db.jogadores, views: req.session.views});
 });
 
 app.get('/jogador/:id/', function(req, res) {
   var perfil = _.find(db.jogadores.players, function(el) { return el.steamid === req.params.id; });
   var jogos = db.jogosPorJogador[req.params.id];
+  
+  if (req.session.views) {
+		req.session.views++;
+	} else {
+		req.session.views = 1;
+	}
 
   // calcula o número jogos que nunca foram abertos
   jogos.not_played_count = _.where(jogos.games, { playtime_forever: 0 }).length;
@@ -43,8 +67,6 @@ app.get('/jogador/:id/', function(req, res) {
     favorite: jogos.games[0]
   });
 });
-
-app.use(express.static('client'));
 
 var server = app.listen(app.get('port'), function () {
   console.log('Servidor aberto em http://localhost:' + server.address().port);

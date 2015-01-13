@@ -18,7 +18,7 @@
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="/">Inicial <span class="sr-only">(current)</span></a></li>
-          <li><a href="#" style="text-align:center;">Visualizações:<br><span class="badge">30</span></a></li>
+          <li><a href="#" style="text-align:center;">Visualizações:<br><span class="badge">{{views}}</span></a></li>
         </ul>
       </div>
     </nav>
@@ -28,7 +28,7 @@
       <div class="col-md-1"></div>
       <div class="col-md-10">
         <ul class="media-list">
-          {{#each players}}
+          {{#each jogadores.players}}
             <li class="media player-card">
               <a class="media-left media-middle" href="/jogador/{{steamid}}/">
                 <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/ad/{{avatarmedium}}" class="avatar">
